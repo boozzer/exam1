@@ -34,6 +34,8 @@ sudo systemctl restart sshd
 sudo setenforce 0
 sudo su
 cd /home/deployer/
-sudo su deployer -c "git clone https://github.com/boozzer/lab.git"
+git clone https://github.com/boozzer/lab.git
+sudo chown deployer:deployer /home/deployer/ -R
+sudo chmod 0755 /home/deployer/ -R
 sudo su deployer -c "cp ~/lab/ansible-configs/ansible.cfg ~/.ansible.cfg"
 sudo su deployer -c "ansible-playbook /home/deployer/lab/ansible-configs/run_website.yml"
